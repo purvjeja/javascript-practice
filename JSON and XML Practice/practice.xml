@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<teams>
+    <team>
+        <teamname>Punjab</teamname>
+        <season_play>2</season_play>
+        <players>11</players>
+    </team>
+    <team>
+        <teamname>Kolkata</teamname>
+        <season_play>3</season_play>
+        <players>11</players>
+    </team>
+    <team>
+        <teamname>Gujarat</teamname>
+        <season_play>5</season_play>
+        <players>11</players>
+    </team>
+    <team>
+        <teamname>maharashtra</teamname>
+        <season_play>4</season_play>
+        <players>11</players>
+    </team>
+    <team>
+        <teamname>Delhi</teamname>
+        <season_play>4</season_play>
+        <players>11</players>
+    </team>
+</teams>

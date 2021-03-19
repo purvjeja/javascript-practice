@@ -1,0 +1,8 @@
+{"teams":[
+    {"teamname": "Punjab" , "season_play" : 2 , "players": 11 },
+    {"teamname": "kolkata" , "season_play" : 5 , "players": 11 },
+    {"teamname": "maharastra" , "season_play" : 3 , "players": 11 },
+    {"teamname": "Gujarat" , "season_play" : 2 , "players": 11 },
+    {"teamname": "Delhi" , "season_play" : 4 , "players": 11 }
+
+]}
