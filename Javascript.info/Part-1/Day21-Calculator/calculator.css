@@ -7,19 +7,47 @@
     width: 500px;
     height: 600px;
 }
+
 .operator-section > button{
     height: 90px;
-
 }
+
+#calculationsMade{
+    width: 100%;
+    background: transparent;
+    border:0px;
+    font-size: 30px;
+}
+#calculationsMade:hover{
+    border:0px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+button{
+    font-size: 30px;
+}
+
+
+button:hover{
+    background-color:gray;
+    color: white;
+}
+
 .calculation-area{
     width: 475px;
     border: 2px solid black;
     margin: 10px;
     height: 100px;
+    font-size: 50px;
 }
+
 .input-section{
     display: flex;
   
+}
+
+.previousCalculations{
+    color: white;
 }
 .operand-section{
     display: grid;
@@ -39,11 +67,31 @@
     width: 400px;
     height: 600px;
     margin-left: 10px;
+    visibility: hidden;
+    position: fixed;
+    top:100px;
+    left:40%;   
+    overflow: scroll;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
 }
-.history-text{
-    margin: 30px;
-font-size: xx-large;
+.history:target{
+  visibility: visible;
+  opacity: 1;
 }
+
+a{
+    text-decoration: none;
+    font-size: 50px;
+    color: white;
+}
+
+a:hover{
+    color: red;
+}
+
 .history-calculations{
     height: 100%;
 }
