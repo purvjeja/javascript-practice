@@ -9,7 +9,6 @@ class Balls {
         this.leftWise = Math.floor(Math.random() * 470) ;
         this.towardsLeft = true;
         this.towardsTop = true;
-        
     }
 
     selectColor() {
@@ -26,7 +25,6 @@ class Balls {
     }
 
     moveBall(ball){
-        
         if(ball.leftWise < 470 && ball.towardsLeft) {
             (ball.leftWise + ball.speed >= 470) ? ball.leftWise = 470  : ball.leftWise+=ball.speed;
         }
@@ -50,7 +48,7 @@ class Balls {
     }
 
     start(option) { 
-        console.log(option);
+        //console.log(option);
         setInterval( function() { option.moveBall(option); } ,100);
     }
 }
@@ -61,4 +59,5 @@ for(let i=0 ; i < numberOfBallsInput ; i++){
     numberOfBalls[i] = new Balls(speedInput);
     numberOfBalls[i].createBall();
     numberOfBalls[i].start(numberOfBalls[i]);
+    console.log(numberOfBalls[i]);
 }

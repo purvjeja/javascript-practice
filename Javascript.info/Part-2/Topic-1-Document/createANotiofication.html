@@ -1,0 +1,34 @@
+<!-- Create a notification
+Write a function showNotification(options) that creates a notification: <div class="notification"> with the given content. The notification should automatically disappear after 1.5 seconds.
+
+The options are:
+
+// shows an element with the text "Hello" near the right-top of the window
+showNotification({
+  top: 10, // 10px from the top of the window (by default 0px)
+  right: 10, // 10px from the right edge of the window (by default 0px)
+  html: "Hello!", // the HTML of notification
+  className: "welcome" // an additional class for the div (optional)
+}); -->
+<Html>
+    <head>
+        <title>Notification</title>
+    </head>
+    <body>
+        <div id="body"></div>
+    </body>
+    <script>
+        function showNotification() {
+            let div = document.createElement('div');
+            div.className = "welcome";
+            div.innerHTML = "<h1> Hello </h1>";
+            div.setAttribute("style","position:fixed; top:10px; right:10px;");
+            document.getElementById('body').append(div);
+        }
+    
+
+        showNotification();
+
+        setTimeout(() => document.querySelector(".welcome").remove(),1500);
+    </script>
+</Html>

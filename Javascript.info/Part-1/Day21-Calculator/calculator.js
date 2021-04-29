@@ -2,7 +2,6 @@ let expression = "";
 let expressionArea = document.getElementById("calculationArea");
 let history = [];
 
-
 document.getElementById("calculationArea").select();
 function calculationButtons(inputId) {
     if (inputId == "9") {
@@ -72,10 +71,13 @@ function calculationButtons(inputId) {
 }
 
 function copyToInput(text) {
+    text = text.substring(0,text.indexOf('='));
+    expression += text;
     expressionArea.value = text; 
 }
 
 function calculationResult() {
+    expression =  document.getElementById('calculationArea').value;
     let result = eval(expression);
     expressionArea.value = result;
     history.push(expression + ' = ' + result);
