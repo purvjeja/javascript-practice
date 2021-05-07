@@ -1,183 +1,157 @@
 class calculator {
+    expression = "";
 
-    constructor(calculatorName) {
-        this.createCalculator(calculatorName);
-    }
+    constructor(calculatorName, whereTo) {
+        this.totalCalculation = 0;
+        this.calculatorName =calculatorName;
+        this.positionOfCalculatorAt = document.querySelector(whereTo);
+        
+        //Creating Heading Of Calculator 
+        this.calculatorHeading = this.createElement('h1','NA','NA',`Calculator Name : ${calculatorName}`,'NA','NA');
+        this.calculationCount = this.createElement('h1','NA','NA',`Calculations Made : ${this.totalCalculation}`,'NA','NA');
 
-    calculationButtons(eventType){
-        console.log("clicked");
-    }
+        //Creting Calculator Box
+        this.mainElement = this.createElement('NA','mainElement',calculatorName,'NA','NA','NA');
+        this.calculatorBox = this.createElement('div','NA','calculator-box','NA','NA','NA');
+        this.inputElement = this.createElement('input','calculationArea','calculation-area','NA','NA','text');
+        this.buttonInputSection =  this.createElement('div','NA','input-section','NA','NA','NA');
 
-    createCalculator(calculatorName){
-        this.mainElement = document.createElement('div');
-        this.mainElement.className = calculatorName;
-        document.getElementById('nCalculators').append(this.mainElement);
-
-        this.calculatorBox = document.createElement('div');
-        this.calculatorBox.className = 'calculator-box';
-        this.mainElement.append(this.calculatorBox);
-
-        this.inputElement = document.createElement('input');
-        this.inputElement.type = 'text';
-        this.inputElement.id = "calculationArea"
-        this.inputElement.className = "calculation-area";
-        this.calculatorBox.append(this.inputElement);
-
-        this.buttonInputSection = document.createElement('div');
-        this.buttonInputSection.className = "input-section";
-        this.calculatorBox.append(this.buttonInputSection);
-
-       
         // Operand Section
-       
-        this.buttonInputOperandSection = document.createElement('div');
-        this.buttonInputOperandSection.className = "operand-section";
-        this.buttonInputSection.append(this.buttonInputOperandSection);
-
-        this.button9 = document.createElement('button');
-        this.button9.id = "9";
-        this.button9.onclick = "calculationButtons("+ 9 +")";
-        this.button9.innerHTML = "9";
-        this.buttonInputOperandSection.append(this.button9);
-        
-        this.button8 = document.createElement('button');
-        this.button8.id = "8";
-        this.button8.onclick = "calculationButtons("+ 8 +")";
-        this.button8.innerHTML = "8";
-        this.buttonInputOperandSection.append(this.button8);
-        
-        this.button7 = document.createElement('button');
-        this.button7.id = "7";
-        this.button7.onclick = "calculationButtons("+ 7 +")";
-        this.button7.innerHTML = "7";
-        this.buttonInputOperandSection.append(this.button7);
-
-        this.button6 = document.createElement('button');
-        this.button6.id = "6";
-        this.button6.innerHTML = "6";
-        this.button6.onclick = "calculationButtons("+ 6 +")";
-        this.buttonInputOperandSection.append(this.button6);
-
-        this.button5 = document.createElement('button');
-        this.button5.id = "5";
-        this.button5.innerHTML = "5";
-        this.button5.onclick = "calculationButtons("+ 5 +")";
-        this.buttonInputOperandSection.append(this.button5);
-          
-        this.button4 = document.createElement('button');
-        this.button4.id = "4";
-        this.button4.innerHTML = "4";
-        this.button4.onclick = "calculationButtons("+ 4 +")";
-        this.buttonInputOperandSection.append(this.button4);
-        
-        this.button3 = document.createElement('button');
-        this.button3.id = "3";
-        this.button3.onclick = "calculationButtons("+ 3 +")";
-        this.button3.innerHTML = "3";
-        this.buttonInputOperandSection.append(this.button3);
-        
-        this.button2 = document.createElement('button');
-        this.button2.id = "2";
-        this.button2.onclick = "calculationButtons("+ 2 +")";
-        this.button2.innerHTML = "2";
-        this.buttonInputOperandSection.append(this.button2);
-        
-        this.button1 = document.createElement('button');
-        this.button1.id = "1";
-        this.button1.onclick = "calculationButtons("+ 1 +")";
-        this.button1.innerHTML = "1";
-        this.buttonInputOperandSection.append(this.button1);
-
-        this.buttondot = document.createElement('button');
-        this.buttondot.id = "dot";
-        this.buttondot.innerHTML = ".";
-        this.buttondot.onclick = "calculationButtons(dot)";
-        this.buttonInputOperandSection.append(this.buttondot);
-        
-        this.button0 = document.createElement('button');
-        this.button0.id = "0";
-        this.button0.onclick = "calculationButtons("+ 0 +")";
-        this.button0.innerHTML = "0";
-        this.buttonInputOperandSection.append(this.button0);
-        
-        this.buttonClr = document.createElement('button');
-        this.buttonClr.id = "clr";
-        this.buttonClr.innerHTML = "Clr";
-        this.buttonClr.onclick = "calculationButtons(clr)";
-        this.buttonInputOperandSection.append(this.buttonClr);
-        
+        this.buttonInputOperandSection = this.createElement('div','NA','operand-section','NA','NA','NA');
+        this.button9 = this.createElement("button",'9','NA','9','NA','NA');
+        this.button8 = this.createElement("button",'8','NA','8','NA','NA');
+        this.button7 = this.createElement("button",'7','NA','7','NA','NA');
+        this.button6 = this.createElement("button",'6','NA','6','NA','NA');
+        this.button5 = this.createElement("button",'5','NA','5','NA','NA');
+        this.button4 = this.createElement("button",'4','NA','4','NA','NA');
+        this.button3 = this.createElement("button",'3','NA','3','NA','NA');
+        this.button2 = this.createElement("button",'2','NA','2','NA','NA');
+        this.button1 = this.createElement("button",'1','NA','1','NA','NA');
+        this.buttondot = this.createElement("button",'dot','NA','.','NA','NA');
+        this.button0 = this.createElement("button",'0','NA','0','NA','NA');
+        this.buttonClr = this.createElement("button",'clr','NA','clr','NA','NA');
        
         //Operator Section
+        this.buttonInputOperatorSection = this.createElement('div','NA','operator-section','NA','NA','NA');
+        this.buttonAdd =  this.createElement("button",'add','NA','+','NA','NA');
+        this.buttonSub =  this.createElement("button",'sub','NA','-','NA','NA');
+        this.buttonDiv =  this.createElement("button",'div','NA','/','NA','NA');
+        this.buttonMul =  this.createElement("button",'mul','NA','x','NA','NA');
+        this.buttonEquals = this.createElement("button",'equal','equal','=','NA','NA');
 
-        this.buttonInputOperatorSection = document.createElement('div');
-        this.buttonInputOperatorSection.className = "operator-section";
-        this.buttonInputSection.append(this.buttonInputOperatorSection);
+        //History Button        
+        this.historyButton = this.createElement('button','NA','historyButton','NA',"<i class='fa fa-history'></i>",'NA');
 
-        this.buttonAdd = document.createElement('button');
-        this.buttonAdd.id = "add";
-        this.buttonAdd.onclick = "calculationButtons(add)";
-        this.buttonAdd.innerHTML = "+";
-        this.buttonInputOperatorSection.append(this.buttonAdd);
-        
-        this.buttonSub = document.createElement('button');
-        this.buttonSub.id = "sub";
-        this.buttonSub.onclick = "calculationButtons(sub)";
-        this.buttonSub.innerHTML = "-";
-        this.buttonInputOperatorSection.append(this.buttonSub);
-        
-        this.buttonDiv = document.createElement('button');
-        this.buttonDiv.id = "div";
-        this.buttonDiv.onclick = "calculationButtons(div)";
-        this.buttonDiv.innerHTML = "/";
-        this.buttonInputOperatorSection.append(this.buttonDiv);
-        
-        this.buttonMul = document.createElement('button');
-        this.buttonMul.id = "mul";
-        this.buttonMul.onclick = "calculationButtons(mul)";
-        this.buttonMul.innerHTML = "*";
-        this.buttonInputOperatorSection.append(this.buttonMul);
-        
-        this.buttonEquals = document.createElement('button');
-        this.buttonEquals.id = "equals";
-        //this.buttonEquals.onclick = "calculationButtons('H')";
-        this.buttonEquals.onclick = function() { this.calculationButtons("H") };
-        this.buttonEquals.innerHTML = "=";
-        this.buttonInputOperatorSection.append(this.buttonEquals);
-
-        this.historyButtonDivision = document.createElement('div');
-        this.mainElement.append(this.historyButtonDivision);
-
-        this.historyButton = document.createElement('button');
-        this.historyButton.onclick = "location.href ='#history'";
-        this.historyButton.innerHTML = "<i class='fa fa-history'></i>";
-        this.historyButtonDivision.append(this.historyButton);
-
-        
         // History Container
-
-        this.historyContainer = document.createElement('div');
-        this.historyContainer.id = "history";
-        this.historyContainer.className = "history";
-        this.mainElement.append(this.historyButton);
-
-        this.historyContainerContent = document.createElement('div');
-        this.historyContainerContent.setAttribute("style","display:flex;");
-        this.historyContainer.append(this.historyContainerContent);
-
-        this.historyContainerContentText = document.createElement('div');
-        this.historyContainerContentText.innerHTML = "<h1>HISTORY</h1>";
-        this.historyContainerContent.append(this.historyContainerContentText);
-
-        this.historyContainerContentCloseSymbol = document.createElement('div');
-        this.historyContainerContentCloseSymbol.setAttribute("style","position: absolute; top: 0px; right: 10px;");
-        this.historyContainerContentCloseSymbol.innerHTML = "<a class='close' href='#'>&times;</a>";
-        this.historyContainerContent.append(this.historyContainerContentCloseSymbol);
-
-        this.calculatedHistoryArea = document.createElement('div');
-        this.calculatedHistoryArea.id = "history-calculations";
-        this.historyContainer.append(this.historyContainerContent);
+        this.historyContainer = this.createElement('div',`historyof${calculatorName}`,'history','NA','NA');
+        this.historyContainerContent = this.createElement('div','NA','historyContainerContent','NA','NA','NA');
+        this.historyContainerContentText = this.createElement('div','NA','historyText','NA','<h1>HISTORY</h1>');
+        this.historyContainerContentCloseSymbol = this.createElement('div','NA','crossSymbol','NA',"<a class='close' href='#'>&times;</a>");
+        this.calculatedHistoryArea = this.createElement('div','history-calculations','NA','NA','NA','NA');
+        this.apendingCalculatorClassStructureELements();
     }
 
+    getCaculatorName(){
+        return this.calculatorName
+    }
+
+    createElement(elementType,elementId,elementClassName,elementInnerText,elementHTMLText,inputElementType){
+        this.elementName = document.createElement(elementType);
+        if(elementId != 'NA') this.elementName.id = elementId;
+        if(elementClassName != 'NA') this.elementName.className = elementClassName;
+        this.whichfunctionCall = {'equal'  :  'this.calculateResult.bind(this)',
+                                  'NA'  :  'this.calculationButtons.bind(this, elementId)',
+                                  'historyButton'  :  '() => { window.location.href = "#historyof" + this.getCaculatorName()}',
+                                  'calculationMade'  :  'this.copyToInput.bind(this,elementInnerText)'};
+        if(elementType == "button" || elementClassName == "calculationMade") this.elementName.addEventListener("click",eval(this.whichfunctionCall[elementClassName])); 
+        if(elementInnerText != 'NA')  this.elementName.innerText = elementInnerText;
+        if(elementHTMLText != 'NA') this.elementName.innerHTML = elementHTMLText;
+        if(inputElementType != 'NA') this.elementName.type = inputElementType;
+        return this.elementName;
+    }
+
+    apendingCalculatorClassStructureELements() {    // appending all the elements of calculator
+        this.appendingElements(this.positionOfCalculatorAt,this.calculatorHeading);
+        this.appendingElements(this.positionOfCalculatorAt,this.calculationCount);
+        this.appendingElements(this.positionOfCalculatorAt,this.mainElement);
+        this.appendingElements(this.mainElement,this.calculatorBox);
+        this.appendingElements(this.calculatorBox,this.inputElement);
+        this.appendingElements(this.calculatorBox,this.buttonInputSection);
+        this.appendingElements(this.buttonInputSection,this.buttonInputOperandSection);
+        this.appendingElements(this.buttonInputOperandSection,this.button9);
+        this.appendingElements(this.buttonInputOperandSection,this.button8);
+        this.appendingElements(this.buttonInputOperandSection,this.button7);
+        this.appendingElements(this.buttonInputOperandSection,this.button6);
+        this.appendingElements(this.buttonInputOperandSection,this.button5);
+        this.appendingElements(this.buttonInputOperandSection,this.button4);
+        this.appendingElements(this.buttonInputOperandSection,this.button3);
+        this.appendingElements(this.buttonInputOperandSection,this.button2);
+        this.appendingElements(this.buttonInputOperandSection,this.button1);
+        this.appendingElements(this.buttonInputOperandSection,this.buttondot);
+        this.appendingElements(this.buttonInputOperandSection,this.button0);
+        this.appendingElements(this.buttonInputOperandSection,this.buttonClr);
+        this.appendingElements(this.buttonInputSection,this.buttonInputOperatorSection);
+        this.appendingElements(this.buttonInputOperatorSection,this.buttonAdd);
+        this.appendingElements(this.buttonInputOperatorSection,this.buttonSub);
+        this.appendingElements(this.buttonInputOperatorSection,this.buttonDiv);
+        this.appendingElements(this.buttonInputOperatorSection,this.buttonMul);
+        this.appendingElements(this.buttonInputOperatorSection,this.buttonEquals);
+        this.appendingElements(this.mainElement,this.historyButton);
+        this.appendingElements(this.mainElement,this.historyContainer);
+        this.appendingElements(this.historyContainer,this.historyContainerContent);
+        this.appendingElements(this.historyContainerContent,this.historyContainerContentText);
+        this.appendingElements(this.historyContainerContent,this.historyContainerContentCloseSymbol);
+        this.appendingElements(this.historyContainer,this.calculatedHistoryArea);
+    }
+
+    appendingElements(to,from){
+        to.append(from);
+    }
+
+    calculationButtons(inputId) {
+        this.inputIdType = {
+            "9" : "9", "8" : "8", "7" : "7", "6" : "6", "5" : "5", "4" : "4", "3" : "3", "2" : "2", "1" : "1", "0" : "0", "dot" : ".", 
+            "add" : "+", "sub" : "-", "mul" : "*", "div" : "/" ,"clr" : ""
+        }
+        this.expression = (inputId == "clr") ?  "" : this.expression + this.inputIdType[inputId];
+        this.inputElement.value = this.expression;
+    }
+
+    errorShow(){
+        alert("ERROR : Unexpected Expression!");
+        this.expression = "";
+        this.inputElement.value = this.expression;
+    }
+
+    expressionCheck(){
+        this.operators = ['+' , '-' , '*' , '/'];
+        if(this.operators.indexOf(this.expression[0]) > 1 || this.operators.indexOf(this.expression[this.expression.length - 1]) > -1) return true;
+        return false;
+    }
+
+    calculateResult() {
+        this.expression = this.inputElement.value;
+        if(this.expression == "" ||  this.expressionCheck()) this.errorShow();
+        else {
+          this.result = eval(this.expression);
+          this.inputElement.value = this.result;
+          this.calculatedHistoryAreaButton(this.expression + ' = ' + this.result);
+          this.expression = this.result;
+          this.totalCalculation++;
+          this.calculationCount.innerText = "Calculations Made : " + this.totalCalculation;
+        }
+    }
+
+    copyToInput(textContent){
+        textContent = textContent.substring(0,textContent.indexOf('=') - 1);
+        this.expression = textContent;
+        this.inputElement.value = textContent;
+    }
+
+    calculatedHistoryAreaButton(content) {
+        this.buttonForExpressionCopy = this.createElement('div','NA','calculationMade',content,'NA','NA');
+        this.calculatedHistoryArea.prepend(this.buttonForExpressionCopy);
+    }
 }
-let objectOf = new calculator("main");
-console.log(objectOf);
+
+let objectOf = new calculator("Main", "#nCalculators");
