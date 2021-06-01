@@ -2,7 +2,7 @@ let numberOfBalls = [];
 
 class Balls {
     
-    div = document.createElement('div');
+    container = document.getElementById('outerBox');
     constructor(speed){
         this.speed = parseInt(speed);   
         this.topWise = Math.floor(Math.random() * 470);
@@ -10,18 +10,19 @@ class Balls {
         this.towardsLeft = true;
         this.towardsTop = true;
     }
-
+    
     selectColor() {
-        this.colors = ['red','blue','green','yellow','orange','pink','black','cyan','white','indigo'];
+        this.colors = ['red','blue','green','yellow','orange','pink','black','cyan','white','indigo']; 
         return this.colors[Math.floor(Math.random() * 10)];
     }
 
     createBall(){
+        this.div = document.createElement('div');
         this.div.className = 'ball';
         this.div.style.left = this.leftWise + 'px';
         this.div.style.top = this.topWise + 'px';
         this.div.style.backgroundColor = this.selectColor();
-        document.getElementById('outerBox').appendChild(this.div);    
+        this.container.appendChild(this.div);    
     }
 
     moveBall(ball){

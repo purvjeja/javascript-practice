@@ -1,0 +1,25 @@
+<!-- Use JavaScript to:
+
+Show the value and the text of the selected option.
+Add an option: <option value="classic">Classic</option>.
+Make it selected.
+Note, if you’ve done everything right, your alert should show blues.
+ -->
+
+
+<html>
+    <head>
+        <title>Basics</title>
+    </head>
+    <body>
+        <select id="genres">
+            <option value="rock">Rock</option>
+            <option value="blues" selected>Blues</option>
+          </select>
+    </body>
+    <script>
+        let option = new Option('Classic','classic');
+        genres.append(option);
+        alert(Array.from(genres.options).filter(option => option.selected).map(option => option.value));
+    </script>
+</html>
