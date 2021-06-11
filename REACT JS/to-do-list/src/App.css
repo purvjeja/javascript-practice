@@ -6,32 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
-#menu{
-
-  display: flex;
-}
-#menu > div{
-  margin: 30px;
-}
-button{
-  width: 150px;
-  height: 60px;
-  font-size: 20px;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-#problems{
-  background-color:rgba(19, 138, 39, 0.938);
-  margin-top: 20px;
-  border-radius: 20px;
-}
-
-button{
-  border-radius: 20px;
 }
 
 .App-header {
