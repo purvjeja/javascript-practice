@@ -6,7 +6,12 @@ function App() {
   return (
     <div id="App" className="App">
       <header className="App-header">
-        
+        <div>
+        <CurrentTime /> 
+        </div>
+        <br />
+        <br />
+        <br />
         <div id="menu" className="problem">
         <Problem1 /> <hr />
         <Problem2 /> <hr />
@@ -21,6 +26,38 @@ function App() {
 // function Names(props){
 //   return <h1>Hello, {props.name} {props.surname}</h1>; 
 // }
+
+class CurrentTime extends React.Component{
+  constructor(props) {
+      super(props);
+      this.state = {date: new Date()};
+    }
+  
+    componentDidMount() {
+      this.timerID = setInterval(
+        () => this.change(),1000
+      );
+    }
+  
+    componentWillUnmount() {
+      clearInterval(this.timerID);
+    }
+  
+    change() {
+      this.setState({
+        date: new Date()
+      });
+    }
+  
+    render() {
+      return (
+        <div className="timerBody">
+          <h1>Current Time : {this.state.date.toLocaleTimeString()}</h1>
+        </div>
+      );
+    }
+  }
+
 
 function Problem1(){
   var status = useState('none');  

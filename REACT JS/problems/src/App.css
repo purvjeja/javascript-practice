@@ -18,6 +18,10 @@ button{
   height: 60px;
   font-size: 20px;
 }
+.timerBody{
+  border: 4px dotted wheat;
+  padding: 20px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
