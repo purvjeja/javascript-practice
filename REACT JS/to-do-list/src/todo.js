@@ -4,58 +4,113 @@ import './todo.css';
 export default function Todo(){
     let [todoArrayObject,setTodoArrayObject] = useState([]);
     let [listCount,setListCount] = useState(0);
+    let [displayArray,setDisplayArray] = useState([]);
 
+    
     const InputFields = () => {
         return (
             <div>
-                <input id="currentInput" type="text" placeholder="Add Your Goals" />
-                <button id="addButton" onClick={AddCurrentGoal}> Add </button> 
+                <input id="currentInput" type="text" placeholder=" Add Your Goal" />
+                <button id="addButton" onClick={AddCurrentGoal}><b>+</b></button> 
             </div>
         )
     }
 
     const ListArea = () => {
-        const listItems = todoArrayObject.map((todoArrayItem,index) => <div key={index}> <CreateComponent  id={todoArrayItem.id} content={todoArrayItem.content} status={todoArrayItem.status}/></div>);
+        let  listItems = 
+        displayArray.map((displayArrayItem,index) => <div key={index}> <CreateComponent  id={displayArrayItem.id} content={displayArrayItem.content} check={displayArrayItem.status}/></div>); 
         return (
             <div id="listArea"> 
                 {listItems}
             </div>
         )
     }
-
     const AddCurrentGoal = () => {
         const currentGoal = document.getElementById('currentInput').value;
-        setTodoArrayObject([...todoArrayObject,{id : listCount , content : currentGoal , status : false}]);
-        console.log(todoArrayObject);
+        if(!currentGoal){ alert("You are trying to add nothing!"); return; }
+        setTodoArrayObject([{id : listCount , content : currentGoal , status : false},...todoArrayObject]);
+        setDisplayArray([{id : listCount , content : currentGoal , status : false},...todoArrayObject]);
         setListCount(listCount+1);
+        document.getElementById('currentInput').select();
     }
 
     const CreateComponent = (props) => {
         return (
-            <div id={props.id} className="listBody">
-                <div className="listComponentCheckBox"><input type="checkbox" /></div>
-                <div className="listComponentName"><h4>{props.content}</h4></div>
-                <div className="listComponentCrossButton"><button><b>X</b></button></div>
+            <div id = {props.id} className="listBody">
+                <div className="listComponentCheckBox"><input className="checkbox" type="checkbox" onClick={() => {changeCheckBox(props.id)}} defaultChecked={props.check}/></div>
+                <div className="listComponentName"><h2>{props.content}</h2></div>
+                <div className="listComponentCrossButton"><button  onClick={() => {deleteList(props.id)}}><b>X</b></button></div>
             </div>
         )
     }
 
+    const changeCheckBox = (thisComponentId) => {
+        
+        for(let i of todoArrayObject){
+            if(thisComponentId === i.id){
+                i.status =!(i.status);
+                break;
+            }
+        } 
+    }
+
+    const deleteList = (thisComponentId) => {
+        
+        for(let i in todoArrayObject){
+            if(thisComponentId === todoArrayObject[i].id){ 
+                todoArrayObject.splice(i,1);
+                document.getElementById(thisComponentId).remove();
+                break; 
+            }
+        }
+        for(let j in displayArray){
+            if(thisComponentId === displayArray[j].id){ 
+                displayArray.splice(j,1);
+                break; 
+            }
+        }
+    }
+
+
+    const filterStatus = (displayType) => {
+        if(displayType === "active") {
+            let filtered = todoArrayObject.filter(function(value){
+                if(value.status === false) return value;
+                return false;
+            });
+            setDisplayArray(filtered);
+            if(filtered.length === 0 && todoArrayObject.length > 0) {alert("Hurray, You have completed all of your tasks, And you don't have any active tasks left!"); return;}
+        }
+        else if(displayType === "completed") {
+            let filtered = todoArrayObject.filter(function(value){
+                if(value.status === true) return value;
+                return false;
+            });
+            setDisplayArray(filtered);
+            if(filtered.length === 0 && todoArrayObject.length > 0) {alert("You haven't completed any of your tasks!"); return;}
+        }
+        else {
+            setDisplayArray(todoArrayObject);
+        }
+    }
+
+   
+    const FilterButtons = () => {
+        return (
+            <div className="filterButtons">
+                <button onClick={ () => {filterStatus("all")}}>All</button>
+                <button onClick={ () => {filterStatus("active")}}>Active</button>
+                <button onClick={ () => {filterStatus("completed")}}>Completed</button>
+      
+            </div>
+        )       
+    }
     return (
         <div id="body">
-            <h1> To-Do List </h1>
+            <h1>List Your Today's Goal</h1>
             <InputFields />
             <ListArea />
             <FilterButtons />
         </div>    
     )
 }
-const FilterButtons = () => {
-    return (
-        <div>
-            <button>Active</button>
-            <button>Completed</button>
-            <button>All</button>
-        </div>
-    )       
-}
- 

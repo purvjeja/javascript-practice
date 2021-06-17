@@ -6,39 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
-#menu{
-  display: flex;
-}
-#menu > div{
-  margin: 30px;
-}
-b{
-  font-size: 80px;
-  color:yellowgreen;
-}
-button{
-  width: 150px;
-  height: 60px;
-  font-size: 20px;
-}
-.timerBody{
-  border: 4px dotted wheat;
-  padding: 20px;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-#problems{
-  background-color:rgba(19, 138, 39, 0.938);
-  margin-top: 20px;
-  border-radius: 20px;
-}
-
-button{
-  border-radius: 20px;
 }
 
 .App-header {

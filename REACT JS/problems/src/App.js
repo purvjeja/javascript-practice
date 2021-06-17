@@ -13,24 +13,26 @@ function App() {
         <br />
         <br />
         <div id="menu" className="problem">
-        <Problem1 /> <hr />
-        <Problem2 /> <hr />
-        <Problem3 />
-        </div>
-        <div id="problems" className="problem">
+        <div><Problem1 /> </div><hr />
+        <div><Problem2 /></div> <hr />
+        <div><Problem3 /></div>
         </div>
       </header>
     </div>
   );
 }
-// function Names(props){
-//   return <h1>Hello, {props.name} {props.surname}</h1>; 
-// }
 
 class CurrentTime extends React.Component{
   constructor(props) {
       super(props);
-      this.state = {date: new Date()};
+      this.state = {
+        date: new Date()
+      };
+    }
+
+    dateInPercent(date){
+      let percentResult = ((date.getSeconds() + date.getMinutes() * 60 + date.getHours() * 60 * 60)/86400) * 100;
+      return percentResult.toFixed(2)
     }
   
     componentDidMount() {
@@ -52,7 +54,8 @@ class CurrentTime extends React.Component{
     render() {
       return (
         <div className="timerBody">
-          <h1>Current Time : {this.state.date.toLocaleTimeString()}</h1>
+          <h1>Current Time :<b> {this.state.date.toLocaleTimeString()} </b></h1>
+          <h2> You have covered <b>{this.dateInPercent(this.state.date)}% </b> of the day :)</h2>
         </div>
       );
     }
@@ -115,7 +118,7 @@ function Problem3(){
   }
   return(
     <div>
-      <h1>Problem 2</h1>
+      <h1>Problem 3</h1>
       <h3>Increment or Decrement a Number</h3>
       <button onClick={incrementNumber}> +  </button>
       <h1>{currentNumber}</h1>
