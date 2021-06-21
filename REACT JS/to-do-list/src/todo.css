@@ -2,6 +2,10 @@ body{
     background-color: aqua;
 }
 
+#body:hover{
+    box-shadow: 4px 4px 20px black;
+}
+
 #body > h1{
     color: wheat;
     font-size: 40px;

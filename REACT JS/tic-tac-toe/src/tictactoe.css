@@ -1,0 +1,74 @@
+.mainBoxBackground {
+    margin: 100px;
+    width: 1100px;
+    height: 1100px;
+    /* background-color:cyan; */
+    position: relative;
+}
+
+.userInputBox{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* width: 900px;
+    height: 900px; */
+}
+.main{
+    padding: 100px;
+    width: 900px;
+    height: 900px;
+}
+
+.line1{
+    width: 1px;
+    height: 900px;
+    border-left:5px solid black;
+    position:absolute;
+    left: 400px;
+}
+.line2 {
+    width: 1px;
+    height: 900px;
+    border-left : 5px solid black;
+    position:absolute;
+    left: 700px;
+ }
+.line3{
+    width: 900px;
+    height: 0px;
+    border-top : 5px solid black;
+    position:absolute;
+    top: 400px;
+}
+.line4{
+    width: 900px;
+    height: 0px;
+    border-top : 5px solid black;
+    position:absolute;
+    top: 700px;
+}
+.svg{
+    position :absolute;        
+    margin-left: 100px;
+    width: 1100px;
+    height:1100px;
+    background-color: cyan;
+}
+.line{
+    stroke:red;
+    stroke-width:7;
+}
+.heading{
+    margin-left: 300px;
+}
+
+.box{
+    margin: 5px;
+    width: 290px;
+    height: 290px;
+    font-size: 300px;
+    cursor: pointer;
+}
+.box:hover{
+    background-color: rgba(0, 0, 0,0.5);
+    color: wheat;
+}
