@@ -3,15 +3,13 @@ import './todo.css';
 
 export default function Todo(){
     let [todoArrayObject,setTodoArrayObject] = useState([]);
-    let [listCount,setListCount] = useState(0);
     let [displayArray,setDisplayArray] = useState([]);
 
-    
     const InputFields = () => {
         return (
             <div>
                 <input id="currentInput" type="text" placeholder=" Add Your Goal" />
-                <button id="addButton" onClick={AddCurrentGoal}><b>+</b></button> 
+                <button id="addButton" onClick={AddCurrentGoal}><b>+</b></button>
             </div>
         )
     }
@@ -28,13 +26,12 @@ export default function Todo(){
     const AddCurrentGoal = () => {
         const currentGoal = document.getElementById('currentInput').value;
         if(!currentGoal){ alert("You are trying to add nothing!"); return; }
-        setTodoArrayObject([{id : listCount , content : currentGoal , status : false},...todoArrayObject]);
-        setDisplayArray([{id : listCount , content : currentGoal , status : false},...todoArrayObject]);
-        setListCount(listCount+1);
-        document.getElementById('currentInput').select();
+        setTodoArrayObject([{id : todoArrayObject.length , content : currentGoal , status : false},...todoArrayObject]);
+        setDisplayArray([{id : todoArrayObject.length , content : currentGoal , status : false},...todoArrayObject]);
     }
 
     const CreateComponent = (props) => {
+        
         return (
             <div id = {props.id} className="listBody">
                 <div className="listComponentCheckBox"><input className="checkbox" type="checkbox" onClick={() => {changeCheckBox(props.id)}} defaultChecked={props.check}/></div>
@@ -94,7 +91,6 @@ export default function Todo(){
         }
     }
 
-   
     const FilterButtons = () => {
         return (
             <div className="filterButtons">
