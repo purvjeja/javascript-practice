@@ -1,0 +1,30 @@
+.mainBox {
+    border: 10px solid rgba(0, 0, 0,0.9);
+    width: 620px;
+    height: 620px;
+    margin: 200px;
+    border-radius: 10px;
+}
+.innerBox {
+    width: 600px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.boxes{
+    font-size: 100px;
+    background-color: red;
+    border: 1px solid black;
+    height: 200px;
+    width: 200px;
+    margin: 2px;
+}
+.boxes:hover{
+    border:2px solid black;
+}
+.emptyBox{
+    border: 1px solid black;
+    height: 200px;
+    width: 200px;
+    margin: 2px;
+}

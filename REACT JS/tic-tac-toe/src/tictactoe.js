@@ -135,7 +135,6 @@ class ticTacToe extends Component{
                     alert(`${playerOne} has won Round ${currentRound}`);
                 }
             }
-            console.log(currentRound);
             this.draw([0,0,0,0]);
             this.setState({
                 ticTacToe : [['','',''],
@@ -153,12 +152,13 @@ class ticTacToe extends Component{
                         player2won : (currentRoundStatus !== 'draw' && whoWon === 0)? playerTwoWonCount + 1 : playerTwoWonCount
                     }
             });
-       
-        if(currentRound >= this.state.setOfMatch){ 
-            
-            if(playerOneWonCount > playerTwoWonCount) alert(`Hurray, ${playerOne} Won!`);
-            else if(playerOneWonCount < playerTwoWonCount) alert(`Hurray, ${playerTwo} Won!`);
-            else alert(`Match Draw`);
+            console.log(this.state.players.player1won);
+            console.log(this.state.players.player2won);
+        if(this.state.currentRound > this.state.setOfMatch){ 
+            if(this.state.players.player1won === this.state.players.player2won) alert("Match Draw");
+            else if(this.state.players.player1won > this.state.players.player2won) alert(`Hurray, ${playerOne} Won!`);
+            else alert(`Hurray, ${playerTwo} Won!`);
+             
             setTimeout(() => window.location.reload(),4000);
         }
     }
