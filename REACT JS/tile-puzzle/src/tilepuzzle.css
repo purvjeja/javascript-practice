@@ -2,7 +2,7 @@
     border: 10px solid rgba(0, 0, 0,0.9);
     width: 620px;
     height: 620px;
-    margin: 200px;
+   
     border-radius: 10px;
 }
 .innerBox {
@@ -20,11 +20,21 @@
     margin: 2px;
 }
 .boxes:hover{
-    border:2px solid black;
+    box-shadow: 2px 2px 2px black;
+    color: wheat;
+    font-weight: 1000;
+    cursor: pointer;
 }
 .emptyBox{
+    font-size: 100px;
     border: 1px solid black;
     height: 200px;
     width: 200px;
     margin: 2px;
+    color: black;
+    opacity: 0.3;
+}
+.GameComponents{
+    margin: 50px;
+    width: 100%;
 }
