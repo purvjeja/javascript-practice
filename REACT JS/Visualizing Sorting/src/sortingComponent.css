@@ -1,0 +1,13 @@
+.numberBoxArea {
+    display: flex;
+}
+.box {
+    margin: 5px;
+    padding-left: 10px;
+    padding-top: 10px;
+    width : 30px;
+    height: 30px;
+    background-color: skyblue;
+    border-radius: 10px;
+    border: 2px solid black;
+}
