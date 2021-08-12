@@ -1,0 +1,64 @@
+/* Sorting Component  */
+
+.sortingInformationOne {
+    margin-bottom: 35px;
+    display: flex;
+}
+.sortingInformationTwo {
+    display: flex;
+    margin-top: 35px;
+}
+.sortingTime{ 
+    position: fixed;
+    left: 40%;
+}
+.sortingComparison{
+    position: fixed;
+    left: 40%
+}
+
+.sortingBlockBox { 
+    width: 50%;
+    height: 200px;
+    background-color: cyan;
+    padding: 20px;
+    border-radius: 20px;
+    border : 2px solid black;
+}
+.numberBoxArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: auto ;
+}
+.box {
+    margin: 5px;
+    padding-left: 10px;
+    padding-top: 10px;
+    width : 30px;
+    height: 30px;
+    background-color: skyblue;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+
+/* Navigation Component  */
+.timeCountButton {
+    display: flex;
+}
+
+
+
+/* Navigation Component  */
+.navigationOptions {
+    display: flex;
+    background-color: darkblue;
+    width: 100%;
+    flex : 1;
+}
+.algoOptionButton{
+    width:100%;
+
+}
