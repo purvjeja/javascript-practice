@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import SortingApp from './sortingComponent';
+import SortingApp from './main';
 
 ReactDOM.render(
     <SortingApp />,

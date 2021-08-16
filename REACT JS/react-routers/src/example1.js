@@ -1,4 +1,4 @@
-import { Router,Route, Link, Switch, useRouteMatch } from "react-router-dom";
+import { BrowserRouter as Router,Route, Link, Switch, useRouteMatch } from "react-router-dom";
 import { useParams } from "react-router";
 export default function Example1() {
   let match = useRouteMatch();
@@ -42,7 +42,7 @@ export default function Example1() {
     }
     
     function Topics() {
-      let match = useRouteMatch();
+      let match1 = useRouteMatch();
     
       return (
         <div>
@@ -50,20 +50,20 @@ export default function Example1() {
     
           <ul>
             <li>
-              <Link to={`${match.url}/components`}>Components</Link>
+              <Link to={`${match1.url}/components`}>Components</Link>
             </li>
             <li>
-              <Link to={`${match.url}/props-v-state`}>
+              <Link to={`${match1.url}/props-v-state`}>
                 Props v. State
               </Link>
             </li>
           </ul>
     
           <Switch>
-            <Route path={`${match.path}/:topicId`}>
+            <Route path={`${match1.path}/:topicIdd`}>
               <Topic />
             </Route>
-            <Route path={match.path}>
+            <Route path={match1.path}>
               <h3>Please select a topic.</h3>
             </Route>
           </Switch>
@@ -71,6 +71,6 @@ export default function Example1() {
       );
 }
 function Topic() {
-  let { topicId } = useParams();
-  return <h3>Requested topic ID: {topicId}</h3>;
+  let { topicIdd } = useParams();
+  return <h3>Requested topic ID: {topicIdd}</h3>;
 }

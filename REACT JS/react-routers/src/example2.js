@@ -1,5 +1,4 @@
 import { BrowserRouter as Router,Route, Link, Switch, useRouteMatch } from "react-router-dom";
-import { useParams } from "react-router";
 export default function Example2() {
 
   let match = useRouteMatch();
@@ -8,7 +7,7 @@ export default function Example2() {
           <div>
             <ol>
               <li>
-                <Link to="/">Home</Link>
+                <Link to={`${match.url}/`}>Home</Link>
               </li>
               <li>
                 <Link to={`${match.url}/about`}>About</Link>
@@ -19,14 +18,13 @@ export default function Example2() {
             </ol>
     
             <Switch>
-
               <Route path={`${match.url}/about`}>
                 <About />
               </Route>
               <Route path={`${match.url}/topics`}>
                 <Topics />
               </Route>
-              <Route path="/">
+              <Route path={`${match.url}/`}>
                 <Home />
               </Route>
             </Switch>

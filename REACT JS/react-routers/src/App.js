@@ -1,13 +1,12 @@
 import React from "react";
 import {
   BrowserRouter as Router,
-  Link,
   Switch,
   Route
 } from "react-router-dom";
 import Example2 from "./example2";
 import Example1 from "./example1";
-
+import Api from "./api"
 export default function App() {
     return (
       <Router>  
