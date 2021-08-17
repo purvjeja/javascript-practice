@@ -1,14 +1,14 @@
 import swap from "../common/swap";
-import { liveAlgorithmData,colorIndexesSettings,arrayToSort } from "../common/commonData";
+import { liveAlgorithmData,colorIndexesSettings } from "../common/commonData";
 import { useState } from "react";
 export default function BubbleSort() {
-    let [array,setArray] = useState(arrayToSort);
+    let [array,setArray] = useState(liveAlgorithmData.arrayToSort);
     let [ithIndex,setIthIndex] = useState(0);
     let [jthIndex,setJthIndex] = useState(0);
 
     const finalIndexes = [];
-    for(let i = arrayToSort.length - 1 ; i > arrayToSort.length - ithIndex - 1 ; i-- ) finalIndexes.push(i);
-    const comparedBoxesPosition = (ithIndex === arrayToSort.length-2) ? [] : [jthIndex,jthIndex+1];
+    for(let i = liveAlgorithmData.arrayToSort.length - 1 ; i > liveAlgorithmData.arrayToSort.length - ithIndex - 1 ; i-- ) finalIndexes.push(i);
+    const comparedBoxesPosition = (ithIndex === liveAlgorithmData.arrayToSort.length-2) ? [] : [jthIndex,jthIndex+1];
 
     colorIndexesSettings.compareColorIndex = comparedBoxesPosition;
     colorIndexesSettings.swapColorIndex = comparedBoxesPosition;

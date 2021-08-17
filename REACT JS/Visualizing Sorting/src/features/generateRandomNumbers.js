@@ -1,4 +1,4 @@
-import { liveAlgorithmData,arrayToSort,colorIndexesSettings } from "../common/commonData";
+import { liveAlgorithmData,colorIndexesSettings } from "../common/commonData";
 
 export default function generateRandomNumber() {
         liveAlgorithmData.sortedStatus = false;
@@ -13,5 +13,5 @@ export default function generateRandomNumber() {
         colorIndexesSettings.sortedColorIndex = [];
         colorIndexesSettings.swapColorIndex = [];
 
-        arrayToSort.value = randomNumberArray;
+        liveAlgorithmData.arrayToSort = randomNumberArray;
 }

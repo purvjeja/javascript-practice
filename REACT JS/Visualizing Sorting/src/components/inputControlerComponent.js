@@ -2,14 +2,15 @@ import "../commonStyle.css";
 import BubbleSort from "../sortingAlgorithms/BubbleSort";
 import TimeSpeed from "./timeSpeed";
 import  generateRandomNumber  from "../features/generateRandomNumbers";
-import { arrayToSort } from "../common/commonData";
+import { liveAlgorithmData } from "../common/commonData";
 export default function ControlInput() {
     
     const updateSortingArea = () => {
         let tempArray = document.getElementById("arrayInput").value.split(",");
-        tempArray = arrayToSort.map(arrayElement => parseInt(arrayElement));
-        arrayToSort.value = tempArray;
-    }   
+        tempArray = liveAlgorithmData.arrayToSort.map(arrayElement => parseInt(arrayElement));
+        liveAlgorithmData.arrayToSort = tempArray;
+        console.log(liveAlgorithmData.arrayToSort);
+    } 
 
     return (
         <div className="inputControllerComponent">
@@ -19,4 +20,4 @@ export default function ControlInput() {
             <TimeSpeed />
         </div>
     )
-}
+}   
