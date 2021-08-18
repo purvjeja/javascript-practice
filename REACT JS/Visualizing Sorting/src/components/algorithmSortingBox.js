@@ -1,12 +1,13 @@
-import { useState } from "react"
-import { colorIndexesSettings,liveAlgorithmData } from "../common/commonData"
+// import { useState } from "react"
+import { useRecoilState } from "recoil"
+import { colorIndexesSettings,liveAlgorithmData, currentSelectedAlgorithmState } from "../common/commonData"
 export default function AlgorithmBox(props) {
-    let [n,setN] = useState(0);
+    const currentActive = useRecoilState(currentSelectedAlgorithmState);
     return(
         <div className="areaOfAlgorithmsVisualization">
             <div className="sortingBlockBox">
                 <div className="sortingInformationOne">
-                    <div className="sortingHeader"><b><u>{liveAlgorithmData.currentActiveAlgorithm}</u></b></div>
+                    <div className="sortingHeader"><b><u>{currentActive}</u></b></div>
                     <div className="sortingTime">Time : {}</div>
                 </div>
                 <div className="numberBoxArea"> 
@@ -17,7 +18,6 @@ export default function AlgorithmBox(props) {
                     <div className="sortingComparison">Comparisions : {} </div>
                 </div>  
             </div>
-            <button onClick={() => setN(n++)}> Purv </button>
         </div>  
     )
 }

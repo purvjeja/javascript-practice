@@ -1,8 +1,9 @@
 import "../commonStyle.css";
-import { listOfAlgorithms,liveAlgorithmData } from "../common/commonData";
+import { currentSelectedAlgorithmState, listOfAlgorithms,liveAlgorithmData } from "../common/commonData";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
 export default function NavigationBar() {
-    let [currentActive,setCurrentActive] = useState(1);
+    let [currentActive,setCurrentActive] = useRecoilState(currentSelectedAlgorithmState);
  
     const setSelectionColor = (id) => {
         return {

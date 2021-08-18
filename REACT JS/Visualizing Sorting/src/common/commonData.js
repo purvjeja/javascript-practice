@@ -1,3 +1,4 @@
+import { atom } from "recoil";
 export let liveAlgorithmData = {
     speedTimeCount : 1000,
     sortedStatus : false,
@@ -11,6 +12,10 @@ export let colorIndexesSettings = {
     sortedColorIndex : []
 };
 
+export const currentSelectedAlgorithmState = atom({   
+    key : 'currentActiveAlgorithm',
+    default : 1
+});
 
 
 export const listOfAlgorithms = [
