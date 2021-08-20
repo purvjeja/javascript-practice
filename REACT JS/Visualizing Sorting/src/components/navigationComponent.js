@@ -1,6 +1,5 @@
 import "../commonStyle.css";
-import { currentSelectedAlgorithmState, listOfAlgorithms,liveAlgorithmData } from "../common/commonData";
-import { useState } from "react";
+import { currentSelectedAlgorithmState, listOfAlgorithms } from "../common/commonData";
 import { useRecoilState } from "recoil";
 export default function NavigationBar() {
     let [currentActive,setCurrentActive] = useRecoilState(currentSelectedAlgorithmState);
@@ -17,13 +16,11 @@ export default function NavigationBar() {
         setCurrentActive(selectedId);
     }
 
-    liveAlgorithmData.currentActiveAlgorithm= currentActive;
-
     return (
         <div> 
             <h1 style={{"padding-left" : "20px"}}> Sorting Visualizer</h1>
             <div className="navigationOptions">
-                 {listOfAlgorithms.map((algorithm,index) => <button style={setSelectionColor(algorithm.id)} onClick={() => setSelectionStatus(algorithm.id)} className="algoOptionButton" id={algorithm.id}><h3>{algorithm.name}</h3></button> )}
+                 {listOfAlgorithms.map((algorithm,index) => <button key={index} style={setSelectionColor(algorithm.id)} onClick={() => setSelectionStatus(algorithm.id)} className="algoOptionButton" id={algorithm.id}><h3>{algorithm.name}</h3></button> )}
             </div>
         </div>
     );

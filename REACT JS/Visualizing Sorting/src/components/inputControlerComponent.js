@@ -1,22 +1,37 @@
 import "../commonStyle.css"; 
-import BubbleSort from "../sortingAlgorithms/BubbleSort";
+import bubbleSort from "../sortingAlgorithms/BubbleSort";
 import TimeSpeed from "./timeSpeed";
-import  generateRandomNumber  from "../features/generateRandomNumbers";
-import { liveAlgorithmData } from "../common/commonData";
+import { arrayToSortCommonState } from "../common/commonData";
+import { useRecoilState } from "recoil";
+
 export default function ControlInput() {
     
+    let [array,setArray] = useRecoilState(arrayToSortCommonState);
+
+    const generateRandomNumber = () => {
+        // liveAlgorithmData.sortedStatus = false;
+        let randomNumberArray = [];
+        for(let i = 0 ; i < 10 ; i++) randomNumberArray.push(parseInt(Math.random() * 100));
+        document.getElementById("arrayInput").value = randomNumberArray.toString(); 
+        // colorIndexesSettings.compareColorIndex = [];
+        // colorIndexesSettings.sortedColorIndex = [];
+        // colorIndexesSettings.swapColorIndex = [];  
+        setArray([...randomNumberArray]);
+
+        return randomNumberArray;
+    }
+
     const updateSortingArea = () => {
         let tempArray = document.getElementById("arrayInput").value.split(",");
-        tempArray = liveAlgorithmData.arrayToSort.map(arrayElement => parseInt(arrayElement));
-        liveAlgorithmData.arrayToSort = tempArray;
-        console.log(liveAlgorithmData.arrayToSort);
-    } 
-
+        tempArray = tempArray.map(arrayElement => (isNaN(parseInt(arrayElement))) ? "" : parseInt(arrayElement) );
+        console.log(tempArray);
+        setArray([...tempArray]);
+    }
     return (
         <div className="inputControllerComponent">
-            <input id="arrayInput" type="text" onChange={updateSortingArea} /> 
+            <input id="arrayInput" type="text" defaultValue={array} onChange={updateSortingArea} /> 
             <button onClick={() => generateRandomNumber()}> Random Numbers </button>
-            <button onClick={BubbleSort}>Start</button>
+            <button onClick={bubbleSort}>Start</button>
             <TimeSpeed />
         </div>
     )
