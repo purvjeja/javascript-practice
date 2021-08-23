@@ -3,6 +3,7 @@ import bubbleSort from "../sortingAlgorithms/BubbleSort";
 import TimeSpeed from "./timeSpeed";
 import { arrayToSortCommonState } from "../common/commonData";
 import { useRecoilState } from "recoil";
+import { AlgorithmSortingArea, AlgorithmSortingBox } from "./algorithmSortingBox";
 
 export default function ControlInput() {
     
@@ -31,7 +32,7 @@ export default function ControlInput() {
         <div className="inputControllerComponent">
             <input id="arrayInput" type="text" defaultValue={array} onChange={updateSortingArea} /> 
             <button onClick={() => generateRandomNumber()}> Random Numbers </button>
-            <button onClick={bubbleSort}>Start</button>
+            <button onClick={() => <AlgorithmSortingBox />}>Start</button>
             <TimeSpeed />
         </div>
     )

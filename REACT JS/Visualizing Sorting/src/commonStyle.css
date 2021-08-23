@@ -16,12 +16,13 @@
     display: flex;
     margin-top: 35px;
 }
-.sortingTime{ 
-    position: fixed;
+.sortingTime { 
+    position: absolute;
     left: 40%;
 }
-.sortingComparison{
-    position: fixed;
+ 
+.sortingComparison {
+    position: absolute;
     left: 40%
 }
 

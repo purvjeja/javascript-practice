@@ -1,8 +1,32 @@
 import { useRecoilState } from "recoil"
 import { colorIndexesSettings,liveAlgorithmData,listOfAlgorithms, currentSelectedAlgorithmState ,arrayToSortCommonState} from "../common/commonData"
-export default function AlgorithmBox(props) {
+import BubbleSort from "../sortingAlgorithms/BubbleSort"
+import HeapSort from "../sortingAlgorithms/HeapSort"
+import InsertionSort from "../sortingAlgorithms/InsertionSort"
+import MergeSort from "../sortingAlgorithms/MergeSort"
+import QuickSort from "../sortingAlgorithms/QuickSort"
+import SelectionSort from "../sortingAlgorithms/SelectionSort"
+
+const callOutAlgorithm = {
+    1 : <BubbleSort />,
+    2 : <MergeSort />,
+    3 : <SelectionSort />,
+    4 : <InsertionSort />,
+    5 : <HeapSort />,
+    6 : <QuickSort />
+}
+
+
+export default function AlgorithmSortingArea() {
     const currentActiveId = useRecoilState(currentSelectedAlgorithmState);
-    const array = useRecoilState(arrayToSortCommonState);
+    return(
+        callOutAlgorithm[currentActiveId[0]]
+    )
+}
+
+
+export function AlgorithmSortingBox(props) {
+    const currentActiveId = useRecoilState(currentSelectedAlgorithmState);
     return(
         <div className="areaOfAlgorithmsVisualization">
             <div className="sortingBlockBox">
@@ -11,7 +35,7 @@ export default function AlgorithmBox(props) {
                     <div className="sortingTime">Time : {}</div>
                 </div>
                 <div className="numberBoxArea"> 
-                    {array[0].map((arrayElement,index) => <div key={index}> <NumberBox index={index} content={arrayElement}  /> </div>)}
+                    {props.array.map((arrayElement,index) => <div key={index}> <NumberBox index={index} content={arrayElement}  /> </div>)}
                 </div>
                 <div className="sortingInformationTwo">
                     <div className="sortingSwaps"> Swaps : {} </div>
@@ -40,3 +64,4 @@ const setColor = (index) => {
                       (colorIndexesSettings.swapColorIndex.includes(index)) ? 'yellow' : 
                       (colorIndexesSettings.sortedColorIndex.includes(index) || liveAlgorithmData.sortedStatus ) ? 'green' : 'grey') }; 
 }
+
