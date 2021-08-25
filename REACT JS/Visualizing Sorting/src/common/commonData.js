@@ -1,15 +1,26 @@
 import { atom } from "recoil";
-export let liveAlgorithmData = {
-    speedTimeCount : 1000,
-    sortedStatus : false,
-    arrayToSort : [4,3,2,1,0,-1,-2,-3,-4],  
-};
+
+export let sortedStatus = atom({
+    key : 'sortedStatus',
+    default : false
+});
+
+export let sortingRunningStatus = atom({
+    key : 'sortingRuningStatus',
+    default : false
+});
+
 
 export let colorIndexesSettings = {
     compareColorIndex : [],
     swapColorIndex : [],
     sortedColorIndex : []
 };
+
+export let sortingTimeSpeed = atom({
+    key : 'sortingTimeSpeed',
+    default : 1000
+});
 
 export let arrayToSortCommonState = atom({
     key : 'arrayToSort',
@@ -18,7 +29,7 @@ export let arrayToSortCommonState = atom({
 
 export const currentSelectedAlgorithmState = atom({   
     key : 'currentActiveAlgorithm',
-    default : 1
+    default : 2
 });
 
 export const listOfAlgorithms = [

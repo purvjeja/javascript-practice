@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil"
-import { colorIndexesSettings,liveAlgorithmData,listOfAlgorithms, currentSelectedAlgorithmState ,arrayToSortCommonState} from "../common/commonData"
+import { colorIndexesSettings,listOfAlgorithms, currentSelectedAlgorithmState } from "../common/commonData"
 import BubbleSort from "../sortingAlgorithms/BubbleSort"
 import HeapSort from "../sortingAlgorithms/HeapSort"
 import InsertionSort from "../sortingAlgorithms/InsertionSort"
@@ -23,7 +23,6 @@ export default function AlgorithmSortingArea() {
         callOutAlgorithm[currentActiveId[0]]
     )
 }
-
 
 export function AlgorithmSortingBox(props) {
     const currentActiveId = useRecoilState(currentSelectedAlgorithmState);
@@ -60,8 +59,9 @@ const NumberBox = (props) => {
 
 const setColor = (index) => { 
     return {
-    backgroundColor : (colorIndexesSettings.compareColorIndex.includes(index)? 'pink' : 
+    backgroundColor : (colorIndexesSettings.compareColorIndex.includes(index)   ? 'pink' : 
                       (colorIndexesSettings.swapColorIndex.includes(index)) ? 'yellow' : 
-                      (colorIndexesSettings.sortedColorIndex.includes(index) || liveAlgorithmData.sortedStatus ) ? 'green' : 'grey') }; 
+                      (colorIndexesSettings.sortedColorIndex.includes(index)) ? 'green' : 'grey') }; 
 }
 
+// || liveAlgorithmData.sortedStatus
