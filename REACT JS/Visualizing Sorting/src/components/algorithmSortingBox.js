@@ -1,3 +1,4 @@
+import { type } from "os"
 import { useRecoilState } from "recoil"
 import { colorIndexesSettings,listOfAlgorithms, currentSelectedAlgorithmState } from "../common/commonData"
 import BubbleSort from "../sortingAlgorithms/BubbleSort"
@@ -34,34 +35,35 @@ export function AlgorithmSortingBox(props) {
                     <div className="sortingTime">Time : {}</div>
                 </div>
                 <div className="numberBoxArea"> 
-                    {props.array.map((arrayElement,index) => <div key={index}> <NumberBox index={index} content={arrayElement}  /> </div>)}
+                    {props.array.map((arrayElement,index) => <div key={index}> <NumberBox index={index} colorIndexesSettings={props.colorIndexesSettings} content={arrayElement}  /> </div>)}
                 </div>
                 <div className="sortingInformationTwo">
-                    <div className="sortingSwaps"> Swaps : {} </div>
-                    <div className="sortingComparison">Comparisions : {} </div>
+                    <div className="sortingSwaps"> Swaps : {props.swapCount} </div>
+                    <div className="sortingComparison">Comparisions : {props.comparisonCount} </div>
                 </div>  
             </div>
         </div>  
     )
 }
 
-const getAlgorithmName = (currentId) => { 
+const getAlgorithmName = (currentId) => {
     return listOfAlgorithms[currentId[0] - 1].name;
 }
 
 const NumberBox = (props) => {
     return (
-        <div className="box" id={props.index} style={setColor(props.index)}>
+        <div className="box" id={props.index} style={setColor(props.index,props.colorIndexesSettings)}>
             {props.content}
         </div>
     )
 }
 
-const setColor = (index) => { 
+const setColor = (index,colorIndexesSettings) => { 
+    // console.log(colorIndexesSettings.compare);
     return {
-    backgroundColor : (colorIndexesSettings.compareColorIndex.includes(index)   ? 'pink' : 
-                      (colorIndexesSettings.swapColorIndex.includes(index)) ? 'yellow' : 
-                      (colorIndexesSettings.sortedColorIndex.includes(index)) ? 'green' : 'grey') }; 
+    backgroundColor : (colorIndexesSettings.compare.includes(index) ? 'pink' : 
+                      (colorIndexesSettings.swap.includes(index)) ? 'yellow' : 
+                      (colorIndexesSettings.sorted.includes(index)) ? 'green' : 'grey') }; 
 }
 
 // || liveAlgorithmData.sortedStatus

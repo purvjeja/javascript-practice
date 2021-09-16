@@ -24,12 +24,12 @@ export let sortingTimeSpeed = atom({
 
 export let arrayToSortCommonState = atom({
     key : 'arrayToSort',
-    default : [4,3,2,1,0,-1,-2,-3,-4]
+    default : [1,2,5,3,4,3,23,4]
 });
 
 export const currentSelectedAlgorithmState = atom({   
     key : 'currentActiveAlgorithm',
-    default : 2
+    default : 1
 });
 
 export const listOfAlgorithms = [

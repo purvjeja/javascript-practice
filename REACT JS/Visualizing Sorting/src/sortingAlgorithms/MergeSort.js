@@ -1,12 +1,26 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { arrayToSortCommonState } from "../common/commonData";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { arrayToSortCommonState,sortingRunningStatus } from "../common/commonData";
 import { AlgorithmSortingBox } from "../components/algorithmSortingBox";
 
 export default function MergeSort() {
     let [array,setArray] = useRecoilState(arrayToSortCommonState);
-    // setArray([1,2,3]);
+    let [comparisonCount,setComparisonCount] = useState(0);
+    let algorithmRunStatus = useRecoilState(sortingRunningStatus);
+    let [swapCount,setSwapCount] = useState(0);
+    let [colorIndexesSettings,setColorIndexesSettings] = useState({
+        compare: [],
+        swap : [],
+        sorted : []
+    });
+
+    if(algorithmRunStatus[0]) {
+        let currentArray = array;
+        // let lengthOfArray = 
+        // if()
+    }
 
     return ( 
-        <AlgorithmSortingBox array={array}  />
+        <AlgorithmSortingBox array={array} comparisonCount={comparisonCount} swapCount={swapCount} colorIndexesSettings={colorIndexesSettings} />
         )    
 }

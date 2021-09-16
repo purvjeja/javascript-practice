@@ -1,5 +1,5 @@
-const redux = require('redux');
-const createReduxStore = redux.createStore;
+import { createStore } from 'redux';
+const createReduxStore = createStore;
 const BUY_CAKE = 'BUY_CAKE'
 
 
