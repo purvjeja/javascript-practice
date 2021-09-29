@@ -1,45 +1,16 @@
-import { red } from '@material-ui/core/colors';
 import React, { useEffect, useState } from 'react';
+import InputSection from "./InputSection";
 import './App.css';
-interface ListBox {
-  listData: { id: string | number | undefined; listContent: string; isChecked: boolean; isRemoved : boolean; };
-}
-
-interface ListArrayObject {
-  id: number;
-  listContent: string;
-  isChecked: boolean;
-  isRemoved : boolean;
-}
+import { ListArrayObject } from "./Interfaces"
+import { ListBox} from "./Interfaces";
 
 function ToDoLists() {
-  let retrieved : Array<ListArrayObject> = JSON.parse(localStorage.getItem("toDo") as string);
-  let [list, setList] = useState<Array<ListArrayObject>>(retrieved);
+  let fetchToDoList = (localStorage.getItem("toDO") === null) ? [] : JSON.parse(localStorage.getItem("toDo") as string) as Array<ListArrayObject>;
+  let [list, setList] = useState<Array<ListArrayObject>>(fetchToDoList);
   let [activeFilter, setActiveFilter] = useState<string>("all");
   let [filteredArray,setFilterArray] = useState<Array<ListArrayObject>>([]);
-  
 
-
-  const addList = () => {
-    let inputed : string = (document.getElementById("input") as HTMLInputElement).value;
-    if(inputed === "") return;
-    (document.getElementById("input") as HTMLInputElement).value = "";
-    const defaultObject: ListArrayObject = {
-      id: list.length + 1,
-      listContent: inputed,
-      isChecked: false,
-      isRemoved :false
-    }
-    setList(list => [defaultObject,...list]);
-  }
-
-  useEffect(() => {
-   const currentActive = ((document.getElementById(activeFilter)) as HTMLInputElement);
-   currentActive.style.backgroundColor = "transparent";
-   currentActive.style.borderWidth = "2px";
-   currentActive.style.borderColor ="wheat";
-   currentActive.setAttribute("style","backgroundColor : transparent; border:2px solid black;");
-  });
+  if(localStorage.getItem("userNameToDo") === null) localStorage.setItem("userNameToDo", prompt("Enter your name?","Purv") as string);
 
   useEffect(() => {
     let localStorageData : string = JSON.stringify(list);
@@ -50,68 +21,62 @@ function ToDoLists() {
     let tempArray : Array<ListArrayObject> = [];
     if(activeFilter === "all") tempArray = list.map((listElement) => listElement);
     else tempArray = list.filter((listElement) => listElement.isChecked === (activeFilter === "completed") ? true : false);     
-    setFilterArray(tempArray);  
+    setFilterArray(tempArray.reverse()); 
   },[activeFilter,list]);
 
-  const CreateListBox = (props: ListBox) => {
-    const { id, listContent, isChecked,isRemoved } = props.listData;
-    const setId: string = `${id}`;
-    if(!isRemoved) return (
-      <div className="listBox">
-       <div className="LBInput"><input type="checkbox" onClick={() => changeCheckedState(setId)} id={setId} defaultChecked={isChecked}></input> </div>
-       <div className="LBHeading"><h3>{listContent}</h3></div>
-       <div className="LBButton"><button onClick={() => removeList(setId)}><b>X</b></button></div>
-      </div>
-    ) 
-    return (
-      <>
-      </>
-    )
-  }
 
-  const changeCheckedState = (ofId : string) => {
-    let tempArray : Array<ListArrayObject> = list;
-    for(let element of tempArray)
-      if(element.id === parseInt(ofId)) 
-        element.isChecked = !element.isChecked;
-    setList([...tempArray]);  
-  }
-
-  const removeList = (ofId : string) => {
-    for(let element of list)
-      if(element.id === parseInt(ofId)) 
-        element.isRemoved = !element.isRemoved;
-    setList([...list]);  
-  }
-
-  const changeActivefilter = (id: string) => { 
-    setActiveFilter(id);
-  }
+  const clearData = () => { if(window.confirm("Are you sure you want to delete the data?")) setList([]) }
+  
+  const changeActivefilter = (id: string) => { setActiveFilter(id) }
 
   return (
     <div className="ToDoList">
-      <h1> To Do List</h1>
-      <div className="inputAreaSection">
-        <input type="text" placeholder="What's your plan today?" id="input"></input>
-        <button onClick={addList}> + </button>
-      </div>
-      <div className="listAreaSection">
-        {filteredArray.map((listElement, index) => <div key={index}> <CreateListBox listData={listElement} /> </div>)}
-      </div>
+      <h1> Hey {localStorage.getItem("userNameToDo")}, </h1>
+     <InputSection currentActiveFilter={() => setActiveFilter('all')}  list={list} setList={(newArray : Array<ListArrayObject>) => setList(newArray)}/>
+     
+     <div className="listAreaSection">
+          {filteredArray.map((listElement, index) => <div key={index}> <CreateListBox setList={setList} listData={listElement} list={list} /> </div>)}
+       </div>  
+
       <div className="filterButtonsSection">  
         <div>
-          <button style={changeBackground(activeFilter,"all")} id = "all" onClick={() => changeActivefilter("all")}> All </button>
-          <button style={changeBackground(activeFilter,"completed")} id = "completed" onClick={() => changeActivefilter("completed")}> Completed </button>
-          <button style={changeBackground(activeFilter,"active")} id = "active" onClick={() => changeActivefilter("active")}> Active </button>
+          <button id="all" style={setActiveAppearance("all",activeFilter)} onClick={() => changeActivefilter("all")}> All </button>
+          <button id="completed" style={setActiveAppearance("completed",activeFilter)} onClick={() => changeActivefilter("completed")}> Completed </button>
+          <button id="active" style={setActiveAppearance("active",activeFilter)} onClick={() => changeActivefilter("active")}> Active </button>
         </div>
       </div>
+      <button className="clearDatabutton" onClick={clearData}>Clear Date</button>
     </div>
   );
 }
-export default ToDoLists;
 
-const changeBackground = (currentActive : string,toChangebackground : string) => {
-  if(currentActive === toChangebackground) return {
-    backgroundColor : 'red'
-  }
+function setActiveAppearance(calledFrom : string ,currentActiveFilter : string) : object{
+  if(calledFrom === currentActiveFilter) return {};
+  return { backgroundColor : 'rgba(0, 0, 0,0.6)', color : 'wheat', border : '2px solid wheat'};
 }
+
+const CreateListBox = (props: ListBox) => {
+  const { id, listContent, isChecked,isRemoved } = props.listData;
+  const setId: string = `${id}`;
+  
+  const changeCheckedState = (ofId : string) => {
+    props.list[parseInt(ofId)].isChecked = !props.list[parseInt(ofId)].isChecked;
+    props.setList([...props.list]);  
+  }
+
+  const removeList = (ofId : string) => {
+    props.list[parseInt(ofId)].isRemoved = !props.list[parseInt(ofId)].isRemoved;
+    props.setList([...props.list]);  
+  }
+  
+  if(!isRemoved) return (
+    <div className="listBox">
+     <div className="LBInput"> <input type="checkbox" onClick={() => changeCheckedState(setId)} id={setId} defaultChecked={isChecked}></input> </div>
+     <div className="LBHeading"> <h3> {listContent} </h3> </div>
+     <div className="LBButton"><button onClick={() => removeList(setId)}> <b>X</b> </button> </div>
+    </div>
+  ) 
+  return <></>
+}
+
+export default ToDoLists;

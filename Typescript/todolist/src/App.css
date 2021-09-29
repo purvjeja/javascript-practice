@@ -50,10 +50,11 @@
 
 .LBInput {
   width: 20%;
-
+  border-top-left-radius: 10px;
 }
 .LBHeading {
   width: 60%;
+  overflow : auto;
 }
 .LBButton {
   width: 20px;
@@ -76,6 +77,15 @@ button {
   background-color: wheat;
   color: black;
   cursor: pointer;
+}
+
+.clearDatabutton{
+  font-weight: bolder;
+  font-size: larger;
+  background-color: wheat;
+  color: black;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
 .filterButtonsSection {
